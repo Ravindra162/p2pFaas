@@ -1,0 +1,22 @@
+version: '3'
+services:
+  discovery:
+    build:
+      context: ./discovery
+    ports:
+      - "5002:5002"
+
+  learner:
+    build:
+      context: ./learner
+    ports:
+      - "5001:5001"
+
+  scheduler:
+    build:
+      context: ./scheduler
+    ports:
+      - "5000:5000"
+    depends_on:
+      - discovery
+      - learner
